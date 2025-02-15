@@ -34,12 +34,43 @@ pipeline {
 
         }
 
-        stage('Build & Push Docker Image') {
+        stage('Build Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
-                sh 'docker push $IMAGE_NAME:$IMAGE_TAG'
+                sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
             }
         }
+
+        stage('Create Container and Map Port')
+        {
+            steps{
+                sh "docker rm -f sample-api"
+                sh "docker run -d -p 5000:5000 --name $CONTAINER_NAME $IMAGE_NAME:$IMAGE_TAG" // เป็น bridge network จะใช้ ip เครื่อง VM ที่ run jenkins master
+            }
+        }
+
+        stage('Clone Robot Repo') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/Oum789/CICD-Robot-Testing.git'
+            }
+        }
+
+        stage('Run Robot Tests') {
+            steps {
+                sh '''#!/bin/bash
+                source ./venv/bin/activate && ./venv/bin/python -m robot test-calculate.robot
+                '''
+            }
+        }
+
+        stage('Push sample-api image')
+        {
+            steps{
+                sh "docker push $IMAGE_NAME:$IMAGE_TAG"
+            }
+        }
+
+        
 
     }
 }
