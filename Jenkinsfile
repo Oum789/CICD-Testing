@@ -1,5 +1,6 @@
 pipeline {
     agent { label 'vm2' }
+
     environment
     {
         GHCR_USERNAME = 'Oum789'
@@ -8,12 +9,12 @@ pipeline {
         IMAGE_TAG = 'lastest'
     }
 
-
     stages {
+
         stage('Clone API Repo') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/Oum789/CICD-Testing.git'
+                url: 'https://github.com/oum789/CICD-Testing.git'
             }
         }
 
