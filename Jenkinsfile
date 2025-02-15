@@ -43,7 +43,7 @@ pipeline {
         stage('Create Container and Map Port')
         {
             steps{
-                sh "docker rm -f sample-api"
+                // sh "docker rm -f sample-api"
                 sh "docker run -d -p 5000:5000 --name $CONTAINER_NAME $IMAGE_NAME:$IMAGE_TAG" // เป็น bridge network จะใช้ ip เครื่อง VM ที่ run jenkins master
             }
         }
@@ -70,7 +70,7 @@ pipeline {
             }
         }
 
-        
+
 
     }
 }
