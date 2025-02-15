@@ -5,7 +5,7 @@ pipeline {
     {
         GHCR_USERNAME = 'Oum789'
         GHCR_TOKEN = credentials('ghcr-pat')  // ดึง PAT จาก Jenkins Credentials
-        IMAGE_NAME = 'ghcr.io/Oum789/sample-api'
+        IMAGE_NAME = 'ghcr.io/oum789/sample-api'
         IMAGE_TAG = 'lastest'
     }
 
@@ -14,7 +14,7 @@ pipeline {
         stage('Clone API Repo') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/oum789/CICD-Testing.git'
+                url: 'https://github.com/Oum789/CICD-Testing.git'
             }
         }
 
