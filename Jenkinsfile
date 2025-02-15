@@ -7,6 +7,7 @@ pipeline {
         GHCR_TOKEN = credentials('ghcr-pat')  // ดึง PAT จาก Jenkins Credentials
         IMAGE_NAME = 'ghcr.io/oum789/sample-api'
         IMAGE_TAG = 'lastest'
+        CONTAINER_NAME = 'sample-api'
     }
 
     stages {
