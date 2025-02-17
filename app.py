@@ -4,7 +4,8 @@ app = Flask(__name__)
 
 @app.route('/getcode')
 def get_code():
-    return "group 5: นิ่งไว้"
+    team = 'group 5: นิ่งไว้'
+    return team
 
 @app.route('/plus/<int:a>/<int:b>')
 def plus(a, b):
