@@ -1,14 +1,9 @@
 pipeline{
-    agent none
+    agent {label 'vm1'}
     stages{
         stage('Test!') {
             steps {
                 build(job: 'vm2 pipeline')
-            }
-        }
-        stage('name'){
-            steps {
-                sh 'hostname'
             }
         }
         stage('Pre-Prod!') {
