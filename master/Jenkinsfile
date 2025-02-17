@@ -3,12 +3,12 @@ pipeline{
     stages{
         stage('Test') {
             steps {
-                build(job: 'test_vm2')
+                build(job: 'vm2 pipeline')
             }
         }
         stage('Pre-Prod') {
             steps {
-                build(job: 'pre-prod_vm3')
+                build(job: 'vm3 pipeline')
             }
         }
     }
